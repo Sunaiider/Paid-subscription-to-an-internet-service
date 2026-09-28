@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard</title>
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/icons/avatar.png" type="image/png">
+  <link rel="icon" href="/icons/avatar.png" type="image/png">
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://js.stripe.com/clover/stripe.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">Proveedor Internet</div>
+      <nav class="nav">
+        <a href="/">Inicio</a>
+        <a href="/plans">Planes</a>
+        <a href="/dashboard?email=<%= encodeURIComponent(email || '') %>">Mi cuenta</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Mi Suscripción</h2>
+    <div class="dashboard-card">
+      <% if (!user) { %>
+        <p>No se encontró ninguna suscripción para <strong><%= email %></strong>.</p>
+        <p><a href="/plans" class="btn">Ver planes</a></p>
+      <% } else { %>
+        <p><span class="muted">Email:</span> <strong><%= user.email %></strong></p>
+        <p><span class="muted">Plan:</span> <strong><%= user.plan %></strong></p>
+        <p><span class="muted">Estado:</span> <strong><%= user.status %></strong></p>
+        <p><span class="muted">ID de suscripción:</span> <code><%= user.subscriptionId %></code></p>
+        <p class="muted">Última actualización: <%= user.updatedAt %></p>
+      <% } %>
+    </div>
+
+    <footer style="margin-top:18px">
+      <p class="muted">Panel demo — para producción implemente autenticación y persistencia.</p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Planes</title>
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/icons/avatar.png" type="image/png">
+  <link rel="icon" href="/icons/avatar.png" type="image/png">
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://js.stripe.com/clover/stripe.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">Proveedor Internet</div>
+      <nav class="nav">
+        <a href="/">Inicio</a>
+        <a href="/plans">Planes</a>
+        <a href="/dashboard?email=test@example.com">Mi cuenta</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Planes disponibles</h2>
+
+    <div class="plans-grid">
+      <% if (products && products.length) { %>
+        <% products.forEach(function(product) { %>
+          <div class="plan">
+            <div class="title"><%= product.name %></div>
+            <div class="price">$<%= product.price %> <span class="muted">/ mes</span></div>
+            <div class="features"><%= product.description %></div>
+            <div style="margin-top:12px">
+              <form action="/create-checkout-session" method="POST">
+                <input type="hidden" name="email" value="test@example.com" />
+                <input type="hidden" name="plan" value="<%= product.plan %>" />
+                <input type="hidden" name="price_id" value="<%= product.priceId %>" />
+                <% if (product.plan && product.plan.startsWith('service')) { %>
+                  <input type="hidden" name="mode" value="payment" />
+                <% } %>
+                <button class="btn">Contratar</button>
+              </form>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <p class="muted">No hay planes disponibles en este momento.</p>
+      <% } %>
+    </div>
+
+    <!--p class="muted" style="margin-top:18px">(Demo): los formularios envían email como identificador simple. Reemplazar por autenticación real en producción.</p-->
+
+    <footer>
+      <p class="muted">Usa tarjeta de prueba 4242 4242 4242 4242 en modo test.</p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin</title>
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/icons/avatar.png" type="image/png">
+  <link rel="icon" href="/icons/avatar.png" type="image/png">
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="https://js.stripe.com/clover/stripe.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">Proveedor Internet — Admin</div>
+      <nav class="nav">
+        <a href="/">Inicio</a>
+        <a href="/plans">Planes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Panel admin (demo)</h2>
+
+    <section class="dashboard-card" style="margin-bottom:18px">
+      <h3>Price IDs</h3>
+      <p class="muted">Estos son los price IDs configurados en las variables de entorno:</p>
+      <ul>
+        <li>Basic: <strong><%= prices.basic || 'NO CONFIGURADO' %></strong></li>
+        <li>Premium: <strong><%= prices.premium || 'NO CONFIGURADO' %></strong></li>
+        <li>Family: <strong><%= prices.family || 'NO CONFIGURADO' %></strong></li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Usuarios / Suscripciones</h3>
+      <% if (!db || !db.users || db.users.length === 0) { %>
+        <p class="muted">No hay usuarios aún.</p>
+      <% } else { %>
+        <table style="width:100%; border-collapse:collapse">
+          <thead>
+            <tr style="text-align:left; border-bottom:1px solid #eee">
+              <th>Email</th>
+              <th>Plan</th>
+              <th>SubscriptionId</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% db.users.forEach(function(u){ %>
+              <tr style="border-bottom:1px solid #fafafa">
+                <td><%= u.email %></td>
+                <td><%= u.plan %></td>
+                <td><code><%= u.subscriptionId %></code></td>
+                <td><%= u.status %></td>
+                <td>
+                  <% if (u.subscriptionId) { %>
+                    <form method="POST" action="/admin/cancel-sub" style="display:inline">
+                      <input type="hidden" name="subscriptionId" value="<%= u.subscriptionId %>" />
+                      <button class="btn secondary" type="submit">Cancelar suscripción</button>
+                    </form>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </section>
+
+    <footer style="margin-top:18px">
+      <p class="muted">Acceso protegido mediante header <code>x-admin-token</code> (demo).</p>
+    </footer>
+  </main>
+</body>
+</html>

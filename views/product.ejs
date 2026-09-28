@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= product.name %> | Conexión Total</title>
+  <link rel="shortcut icon" href="/icons/favicon.ico" type="image/png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="/icons/logo.png" alt="Logo Conexión Total" />
+        <div>
+          <strong>Conexión Total</strong>
+          <span>Servicio de Internet</span>
+        </div>
+      </a>
+      <nav class="main-nav" aria-label="Menú principal">
+        <a href="/">Inicio</a>
+        <a href="#details">Detalle</a>
+        <a href="/#productos">Productos</a>
+        <a href="/#contact">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 48px 0;">
+    <section class="product-detail">
+      <div class="detail-media">
+        <img src="<%= product.image %>" alt="<%= product.name %>" onerror="this.onerror=null;this.src='/icons/logo.png'" />
+      </div>
+      <div class="detail-copy">
+        <span class="eyebrow">Producto destacado</span>
+        <h1><%= product.name %></h1>
+        <img class="detail-logo" src="/icons/logo.png" alt="Logo Conexión Total" onerror="this.onerror=null;this.src='/icons/logo.png'" />
+        <p class="muted"><%= product.description %></p>
+        <p><%= product.details %></p>
+        <% if (product.features && product.features.length) { %>
+          <div class="detail-features">
+            <h2>Ventajas del servicio</h2>
+            <ul>
+              <% product.features.forEach(feature => { %>
+                <li><%= feature %></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% } %>
+        <div class="detail-actions">
+          <span class="price"><%= product.price.toFixed(2) %></span>
+          <a class="btn" href="/">Volver al inicio</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="details">
+      <h2>Galería del producto</h2>
+      <div class="gallery-grid">
+        <% product.gallery.forEach(image => { %>
+          <img src="<%= image %>" alt="Galería <%= product.name %>" onerror="this.onerror=null;this.src='/icons/logo.png'" />
+        <% }) %>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Conexión Total</strong>
+        <p>Servicio de internet mensual con soporte local y planes adaptados.</p>
+      </div>
+      <div>
+        <h3>Síguenos</h3>
+        <ul class="social-list">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <p>correo@conexiontotal.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Conexión Total. Todos los derechos reservados.</div>
+  </footer>
+</body>
+</html>

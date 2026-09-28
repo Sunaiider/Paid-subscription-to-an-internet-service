@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conexión Total - Servicio de Internet</title>
+  <link rel="shortcut icon" href="/icons/favicon.ico" type="image/png" />
+  <link rel="icon" href="/icons/favicon.ico" type="image/png" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="#inicio">
+        <img class="brand-logo" src="/icons/logo.png" alt="Logo Conexión Total" />
+        <div>
+          <strong>Conexión Total</strong>
+          <span>Internet mensual para tu hogar y negocio</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Menú principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#about">Sobre Nosotros</a>
+        <a href="#contact">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn cart-btn" id="cartButton" aria-label="Abrir carrito">
+          🛒<span class="cart-counter">0</span>
+        </button>
+        <button class="icon-btn" id="darkModeToggle" aria-label="Cambiar modo oscuro">🌓</button>
+        <button class="btn" onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">Contactar</button>
+        <button class="btn secondary hidden" id="accountButton" type="button">Cuenta</button>
+        <button class="btn secondary" id="loginButton" type="button">Iniciar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero-section">
+      <div class="hero-copy">
+        <span class="eyebrow">Servicio de internet</span>
+        <h1>Tu conexión estable y segura para el día a día</h1>
+        <p>Disfruta de planes flexibles, soporte rápido y cobertura local. Ideal para hogares, pymes y entretenimiento sin interrupciones.</p>
+        <div class="hero-buttons">
+          <a class="btn" href="#productos">Ver productos</a>
+          <form action="/create-checkout-session" method="POST" class="hero-form">
+            <input type="hidden" name="email" value="test@example.com" />
+            <input type="hidden" name="plan" value="basic" />
+            <input type="hidden" name="price_id" value="price_1SRaRw6x08voOZbHrOY8PjKG" />
+            <button class="btn secondary" type="submit">Contratar ahora</button>
+          </form>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="/icons/logo.png" alt="Internet rápido" />
+        <div class="hero-stats">
+          <div><strong>9</strong><span>Planes disponibles</span></div>
+          <div><strong>24/7</strong><span>Atención</span></div>
+          <div><strong>100%</strong><span>Confiable</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-section" id="productos">
+      <div class="section-header">
+        <div>
+          <span class="section-label">Catálogo</span>
+          <h2>Servicios y planes</h2>
+        </div>
+        <div class="search-wrapper">
+          <label for="searchInput" class="visually-hidden">Buscar productos</label>
+          <input id="searchInput" type="search" placeholder="Buscar producto..." />
+        </div>
+      </div>
+
+      <div class="product-grid" id="productList"></div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="section-header">
+        <div>
+          <span class="section-label">Sobre Nosotros</span>
+          <h2>Un emprendimiento con foco en la conexión</h2>
+        </div>
+      </div>
+      <div class="about-grid">
+        <article class="about-card">
+          <h3>Nuestra historia</h3>
+          <p>Comenzamos como un pequeño equipo técnico que quería llevar internet de calidad a los barrios cercanos. Hoy seguimos creciendo con el mismo propósito: facilitar la comunicación y el acceso digital.</p>
+        </article>
+        <article class="about-card">
+          <h3>Misión</h3>
+          <p>Brindar soluciones de internet accesibles, rápidas y confiables, con atención cercana y soporte disponible cuando lo necesites.</p>
+        </article>
+        <article class="about-card">
+          <h3>Visión</h3>
+          <p>Ser la mejor opción local en servicios de conectividad, reconocidos por nuestra transparencia, velocidad y satisfacción de clientes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="section-header">
+        <div>
+          <span class="section-label">Contacto</span>
+          <h2>Habla con nosotros</h2>
+        </div>
+      </div>
+      <form id="contactForm" class="contact-form">
+        <label for="name">Nombre</label>
+        <input id="name" name="name" type="text" placeholder="Tu nombre" required />
+
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" rows="5" placeholder="Cuéntanos qué necesitas" required></textarea>
+
+        <button type="submit" class="btn">Enviar</button>
+        <p id="contactFeedback" class="form-feedback" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Conexión Total</strong>
+        <p>Servicio de internet mensual con soporte local y planes adaptados.</p>
+      </div>
+      <div>
+        <h3>Síguenos</h3>
+        <ul class="social-list">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <p>correo@conexiontotal.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Conexión Total. Todos los derechos reservados.</div>
+  </footer>
+
+  <div id="loginModal" class="modal-overlay hidden">
+    <div class="modal-dialog">
+      <button class="modal-close" id="closeLoginModal" aria-label="Cerrar">×</button>
+      <h3>Iniciar sesión</h3>
+      <form id="loginForm">
+        <label for="loginEmail">Correo electrónico</label>
+        <input id="loginEmail" name="email" type="email" placeholder="you@example.com" required />
+
+        <label for="loginName">Nombre</label>
+        <input id="loginName" name="name" type="text" placeholder="Tu nombre" required />
+
+        <button class="btn" type="submit">Ingresar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="accountModal" class="modal-overlay hidden">
+    <div class="modal-dialog">
+      <button class="modal-close" id="closeAccountModal" aria-label="Cerrar">×</button>
+      <h3>Editar cuenta</h3>
+      <form id="accountForm">
+        <label for="accountEmail">Correo electrónico</label>
+        <input id="accountEmail" name="email" type="email" required />
+
+        <label for="accountName">Nombre</label>
+        <input id="accountName" name="name" type="text" required />
+
+        <button class="btn" type="submit">Guardar cambios</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="cartModal" class="modal-overlay hidden">
+    <div class="modal-dialog cart-dialog">
+      <button class="modal-close" id="closeCartModal" aria-label="Cerrar">×</button>
+      <h3>Carrito</h3>
+      <div id="cartContent">
+        <p class="muted">Tu carrito está vacío.</p>
+      </div>
+      <div class="cart-footer">
+        <button class="btn secondary" id="continueShopping">Seguir comprando</button>
+        <button class="btn" id="buyCartButton" type="button">Comprar carrito</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
